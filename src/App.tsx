@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Header from './components/header';
-import api from './services/Api';
-import './App.css';
+import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
+import Routes from './routes';
+import GlobalStyles from './styles/global';
+import Header from './components/Header';
 
-function App() {
-
-  const [product,setProduct] = useState([]);
-
-  useEffect(()=>{
-    async function listCoktails(){
-    const result = await api.get('/search.php?f=a');
-    setProduct(result);
-    }
-    listCoktails();
-  },[]);
-
+const App:React.FC = () => {
   return (
     <>
     <Header/>
-    <ul>
-      {product.map(item => 
-        <li key={item.id}>{item.id}</li>
-      )}
-    </ul>
+    <BrowserRouter>
+    <Routes/>
+    </BrowserRouter>
+    <GlobalStyles/>
     </>
   );
 }

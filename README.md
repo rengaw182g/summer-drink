@@ -19,7 +19,7 @@ npm start
 
 ```
 
-## Obrigado
+## Obrigado 🤜🤛
 Fique a vontade para baixar esse projeto e fazer melhorias, espero que ele sirva de inspiração para você.
 
 
