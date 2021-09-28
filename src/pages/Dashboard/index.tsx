@@ -1,8 +1,9 @@
-import React, { useState, FormEvent, useEffect } from 'react';
-import { Title, Alert, Form, Drinks } from './styles'
+import React, { useState,FormEvent, useEffect } from 'react';
+import { Wrapper,ContainerFeature, Title,Subtitle, Form, Alert, Drinks } from './styles'
 import { Link } from 'react-router-dom';
 import { api } from '../../services/Api';
-
+import {FaSearch, FaUndo} from 'react-icons/fa';
+// import Context from '../../contextApi/Context';
 interface Drinks {
     idDrink: number;
     strDrink: string;
@@ -10,10 +11,12 @@ interface Drinks {
     strInstructions: string;
 }
 
-const Dashboard: React.FC = () => {
 
-    const [find, setFind] = useState('');
-    const [drinks, setDrinks] = useState<Drinks[]>([]);
+const Dashboard: React.FC = () => {
+    
+    const [find,setFind] = useState<string>('');
+    const [drinks,setDrinks] = useState<Drinks[]>([]);
+    // const {idDrink,strDrink} = useContext(Context);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -23,7 +26,6 @@ const Dashboard: React.FC = () => {
             const { drinks: data } = result.data;
             setDrinks(data);
             // console.log('drinks',data);
-
         }
         listDrinks();
     }, [])
@@ -35,6 +37,11 @@ const Dashboard: React.FC = () => {
             const { drinks: data } = result.data;
             setDrinks(data);
             setFind('');
+            if(!data){
+                setError('Nenhum Drink encontrado');
+            }else{
+                setError('');
+            }
         } catch (err) {
             setError('Nenhum Drink encontrado');
         }
@@ -43,15 +50,22 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
+        <Wrapper>      
+            <ContainerFeature> 
+            <Title>Drinks em Destaque</Title>
+            <Subtitle>Encontre as receitas dos drinks mais famosos aqui.</Subtitle>
             <Form onSubmit={findDrink}>
                 <input
+                type="search"
                     value={find}
                     onChange={(e) => setFind(e.target.value)}
-                    placeholder="Busque seu drink..."></input>
-                <button type="submit">Buscar</button>
+                    placeholder="Buscar drink..."></input>
+                <button type="submit"><FaSearch size="22"/></button>
             </Form>
-            <Title>Drinks em destaque</Title>
-            {error && <Alert>{error}</Alert>}
+                {error && <Alert>{error}<Link to="/" >
+                    <FaUndo size="20"/>Voltar</Link></Alert>
+                }
+            </ContainerFeature>
             <Drinks>
                 {drinks ? drinks.map((obj) => (
                     <Link key={obj.idDrink} to={`/detalhes/${obj.idDrink}`} >
@@ -62,6 +76,7 @@ const Dashboard: React.FC = () => {
                     </Link>
                 )) : ''}
             </Drinks>
+            </Wrapper>
         </>
     )
 }

@@ -1,39 +1,71 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-    font-size: 1.4rem;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom:15px;
+    margin:0px 0px 5px 0px;
+    color:var(--green);     
+`;
+export const Subtitle = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size:1rem;
+    font-weight: 300;
+    color:var(--gray);     
+`;
+
+export const Wrapper = styled.div`
+    max-width:1280px;
+    margin: 0px auto;
+    padding:0px 10px 10px;
+`;
+
+export const ContainerFeature = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0px;
 `;
 
 export const Form = styled.form`
-    margin: 20px 0px;
-    max-width: 360px;
+    margin:20px 0px 0px 0px;
+    width: 450px;
     display: flex;
+    justify-content:center;
+    align-items:center;
 
     input{ 
         flex:1;
-        border: 2px solid var(--black);
-        border-radius:4px 0px 0px 4px;
-        padding:6px 10px;
-        font-weight: 300;
-        font-size: 1rem;
+        height:45px;
+        border: 1px solid var(--green);
+        border-radius:25px 0px 0px 25px;
+        padding:10px 10px;
+        font-weight: 400;
+        font-size:1.2rem;
         &::placeholder{
-            color: #a8a8a8;
+            color: #ccc;
         }
     }
-
     button{ 
-        width: 80px;
-        padding: 6px;
-        border: 2px solid var(--black);
-        background:var(--black);
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        width:60px;
+        height:45px;
+        border: 1px solid var(--gray);
+        border: none;
+        padding:10px 10px;
+        background:var(--green);
         color: var(--white);
         transition: background-color 0.3s;
-        border-radius: 0px 4px 4px 0px;
-
+        border-radius:0px 25px 25px 0px;
         &:hover{
-            background:var(--black);
+            background:var(--green);
         }
     }
 `;
@@ -44,11 +76,11 @@ export const Drinks = styled.div`
     flex-wrap:wrap;
     justify-content:flex-start;
 
-    a{
-        border-radius: 6px;
+    a{        
         background:var(--white);
-        padding:15px;
-        width:210px;
+        padding:0px;
+        border-radius:10px;
+        width:220px;
         backdrop-filter: blur(4px);
         text-decoration: none;
         display: flex;
@@ -56,27 +88,33 @@ export const Drinks = styled.div`
         align-items: flex-start;
         justify-content: center;
         transition: all 0.3s ease-in-out;
-        border:1px solid var(--bg);
-        margin:0px 15px 15px 0px;
-        img{
-            border-radius: 6px; 
-            margin-bottom:10px;
+        margin:15px;
+        color: var(--green);
+        box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+        
+        img{           
             width:100%;
+            border-radius: 10px 10px 0px 0px;
         }
 
-        strong{
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--black);
-            text-transform: uppercase;
+        div{
+            padding: 15px;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: var(--green);
+            text-transform: capitalize;
         }
 
         &:hover{
-            box-shadow:0px 10px 20px rgba(0,0,0,0.1);
+            box-shadow:0px 10px 20px rgba(0,0,0,0.2);
         }
     }
 `;
 
 export const Alert = styled.div`
     font-size: 1rem;
+    color: var(--gray);
+    padding: 15px;
+    border-radius: 10px;
+    border:1px solid var(--gray);
 `;

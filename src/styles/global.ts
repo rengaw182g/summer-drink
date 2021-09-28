@@ -1,27 +1,32 @@
 import { createGlobalStyle } from 'styled-components';
-
+import bg from '../assets/bg.png';
 export default createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
 
 *{
     margin:0px;
     padding:0px;
     box-sizing:border-box;
-    font-family: Oswald,'sans-serif';    
+    font-family: Roboto,'sans-serif';    
     outline:none;
 }
 
 :root {
-    --bg:#efefef;
+    --bg:#f6f6f6;
     --white:#fff;
     --black:#000;
-    --gray:#666;
-    --green:#6bd29c;
+    --gray:#6f6f6f;
+    --gold:#c49b4f;
+    --green:#47a737;
+    --green-strong:#1f572f;
+}
+body{
+    background-image:url(${bg});
+    background-repeat:repeat;    
 }
 
 body, input, button {
-    background: var(--white);
     --webkit-font-smoothing: antialiased;
 }
 
@@ -29,11 +34,4 @@ button{
     cursor: pointer;
     text-transform:uppercase;
 }
-
-#root{
-    max-width:960px;
-    margin: 0px auto;
-    padding:15px;
-}
-
 `;
