@@ -5,7 +5,7 @@ const Footer:React.FC = () => {
     return(
         <Wrapper>
         <Container>
-            Summer Drink 2021 - Desenvolvido por Vagner Cavalheri
+            Summer Drink 2021 - By Vagner Cavalheri
         </Container>
         </Wrapper>
     )

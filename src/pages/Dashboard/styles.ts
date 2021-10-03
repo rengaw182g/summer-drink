@@ -75,6 +75,7 @@ export const Drinks = styled.div`
     flex-direction:row;
     flex-wrap:wrap;
     justify-content:flex-start;
+    height: auto;
 
     a{        
         background:var(--white);
@@ -112,6 +113,13 @@ export const Drinks = styled.div`
 `;
 
 export const Alert = styled.div`
+    margin:60px auto;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--black);
+`;
+
+export const Back = styled.div`
     font-size: 1rem;
     color: var(--gray);
     padding: 15px;

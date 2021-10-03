@@ -1,43 +1,53 @@
 import React, { useEffect, useState } from 'react';
+import Category from '../../models/Category';
 import { api } from '../../services/Api';
 import { Link } from 'react-router-dom';
-import { Wrapper,Top,Category,Menu } from './styles';
+import { Wrapper,Top,ContainerMenu,Menu } from './styles';
 import logo from '../../assets/logo.png';
-
-interface Category {
-    strCategory: string;
-}
 
 const Header:React.FC = () => {
         
-    const [category, setCategory] = useState<Category[]>([]);
+    const [category, setCategory] = useState<Category>();
+    const [categorys, setCategorys] = useState<Category[]>([]);
 
     useEffect(() => {
         async function listCategory(): Promise<void> {
             const result = await api.get(`/list.php?c=list`);
             const { drinks: data } = result.data;
-            setCategory(data);
+            setCategorys(data);
         }
         listCategory();
     }, [])
 
+    useEffect(() => {
+  async function navigateCategory(): Promise<void> {
+        const result = await api.get(`/filter.php?g=${category}`);
+        const { category: data } = result.data;        
+    }
+    navigateCategory();
+    }, [category])  
+
+    function updateCategory (params:Category){
+        setCategory(params)
+    }
+
     return(
         <Wrapper>
         <Top>
-            <Link to="/">
+            <Link to="/dashboard">
             <img src={logo} height="36" alt="Summer Drinks"/>
                 Summer Drink.
             </Link>         
         </Top>
-        <Category>
+        <ContainerMenu>
             <Menu>
-                {category.map((cat) => (
-                    <Link key={cat.strCategory} to={`/filter.php?g=${cat.strCategory}`}>
+                {categorys.map((cat) => (
+                    <Link key={cat.strCategory} to="/"  >
                         {cat.strCategory}
                     </Link>
                 ))}
             </Menu>
-        </Category>
+        </ContainerMenu>
         </Wrapper>
     )
 }

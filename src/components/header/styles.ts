@@ -27,7 +27,7 @@ export const Top = styled.div`
     }
 `;
 
-export const Category = styled.header`
+export const ContainerMenu = styled.header`
     width: 100%;
     background:var(--green);   
 `;

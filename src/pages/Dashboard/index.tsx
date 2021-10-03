@@ -1,21 +1,15 @@
 import React, { useState,FormEvent, useEffect } from 'react';
 import { Wrapper,ContainerFeature, Title,Subtitle, Form, Alert, Drinks } from './styles'
 import { Link } from 'react-router-dom';
+import Drink from '../../models/Drink';
 import { api } from '../../services/Api';
 import {FaSearch, FaUndo} from 'react-icons/fa';
 // import Context from '../../contextApi/Context';
-interface Drinks {
-    idDrink: number;
-    strDrink: string;
-    strDrinkThumb: string;
-    strInstructions: string;
-}
-
 
 const Dashboard: React.FC = () => {
     
     const [find,setFind] = useState<string>('');
-    const [drinks,setDrinks] = useState<Drinks[]>([]);
+    const [drinks,setDrinks] = useState<Drink[]>([]);
     // const {idDrink,strDrink} = useContext(Context);
     const [error, setError] = useState('');
 
@@ -38,12 +32,12 @@ const Dashboard: React.FC = () => {
             setDrinks(data);
             setFind('');
             if(!data){
-                setError('Nenhum Drink encontrado');
+                setError('No drinks found.');
             }else{
                 setError('');
             }
         } catch (err) {
-            setError('Nenhum Drink encontrado');
+            setError('No drinks found.');
         }
         // console.log('find',data);
     }
@@ -52,18 +46,18 @@ const Dashboard: React.FC = () => {
         <>
         <Wrapper>      
             <ContainerFeature> 
-            <Title>Drinks em Destaque</Title>
-            <Subtitle>Encontre as receitas dos drinks mais famosos aqui.</Subtitle>
+            <Title>Featured Drinks</Title>
+            <Subtitle>Find the most famous drink recipes here..</Subtitle>
             <Form onSubmit={findDrink}>
                 <input
                 type="search"
                     value={find}
                     onChange={(e) => setFind(e.target.value)}
-                    placeholder="Buscar drink..."></input>
+                    placeholder="Find drink..."></input>
                 <button type="submit"><FaSearch size="22"/></button>
             </Form>
-                {error && <Alert>{error}<Link to="/" >
-                    <FaUndo size="20"/>Voltar</Link></Alert>
+                {error && <Alert>{error}</Alert>
+                    // <Link to="/" ><FaUndo size="20"/>Voltar</Link>
                 }
             </ContainerFeature>
             <Drinks>

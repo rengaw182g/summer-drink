@@ -1,49 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { useRouteMatch } from 'react-router-dom';
+import DetailDrink from '../../models/DetailDrink';
 import { api } from '../../services/Api';
 
-interface DetailsDrink {
-    idDrink: string;
-    strDrinkThumb: string;
-    strDrink: string;
-    strInstructions: string;
-    strIngredient1: string,
-    strIngredient2: string,
-    strIngredient3: string,
-    strIngredient4: string,
-    strIngredient5: string,
-    strIngredient6: string,
-    strIngredient7: string,
-    strIngredient8: string,
-    strIngredient9: string,
-    strIngredient10: string,
-    strIngredient11: string,
-    strIngredient12: string,
-    strIngredient13: string,
-    strIngredient14: string,
-    strIngredient15: string,
-    strMeasure1: string,
-    strMeasure2: string,
-    strMeasure3: string,
-    strMeasure4: string,
-    strMeasure5: string,
-    strMeasure6: string,
-    strMeasure7: string,
-    strMeasure8: string,
-    strMeasure9: string,
-    strMeasure10: string,
-    strMeasure11: string,
-    strMeasure12: string,
-    strMeasure13: string,
-    strMeasure14: string,
-    strMeasure15: string
-}
-
 const Detail: React.FC = () => {
-    const { params } = useRouteMatch<DetailsDrink>();
+    const { params } = useRouteMatch<DetailDrink>();
 
-    const [details, setdetails] = useState<DetailsDrink[]>([]);
+    const [details, setdetails] = useState<DetailDrink[]>([]);
 
     useEffect(() => {
         async function showDetails(): Promise<void> {
@@ -56,7 +20,8 @@ const Detail: React.FC = () => {
 
     return (
         <Container>
-            {details ? details.map((obj) => (
+            {details ? details.map((obj) => {
+                return (
                 <div key={obj.idDrink}>
                     <section>
                         <img src={obj.strDrinkThumb} alt={obj.strDrink} />
@@ -72,13 +37,12 @@ const Detail: React.FC = () => {
                            <li> {obj.strIngredient3} <b>{obj.strMeasure3}</b></li>
                            <li> {obj.strIngredient4} <b>{obj.strMeasure4}</b></li>
                            <li> {obj.strIngredient5} <b>{obj.strMeasure5}</b></li>
-                           <li> {obj.strIngredient6} <b>{obj.strMeasure6}</b></li>
-                          
+                           <li> {obj.strIngredient6} <b>{obj.strMeasure6}</b></li>                          
                         </ul>
                     </section>
                 </div>
-            )
-            ) : ''}
+                )
+            }) : ''}        
         </Container>
     )
 }
